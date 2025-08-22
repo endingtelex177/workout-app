@@ -10,7 +10,7 @@ async function requestWakeLock() {
     console.error(`${err.name}, ${err.message}`);
   }
 }
-//update token test
+//update token test 2
 // A button from 1 through 10 
 for (let i = 1;i <= 10; i++ ) {
     const createButton = document.createElement("button");
