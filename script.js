@@ -10,8 +10,7 @@ async function requestWakeLock() {
     console.error(`${err.name}, ${err.message}`);
   }
 }
-//update token test 2
-// A button from 1 through 10 
+
 for (let i = 1;i <= 10; i++ ) {
     const createButton = document.createElement("button");
     createButton.innerText = `+${i}`;
@@ -25,6 +24,15 @@ for (let i = 1;i <= 10; i++ ) {
         },0)
         document.getElementById("display").innerText = total;
     };
+}
+
+// reset button to 0 
+const resetButton = document.createElement("button");
+document.body.appendChild(resetButton);
+resetButton.innerText = "RESET";
+resetButton.onclick = () => {
+    totalVal = [];
+    document.getElementById("display").innerText = 0;
 }
 
 requestWakeLock();
