@@ -10,12 +10,16 @@ async function requestWakeLock() {
     console.error(`${err.name}, ${err.message}`);
   }
 }
+// a container for the button 
+const buttonContainer = document.createElement("div");
+buttonContainer.classList.add("button-container");
+document.body.appendChild(buttonContainer);
 //create 10 button, and put id on each of them, click of a button will return a value with the designated number
 for (let i = 1;i <= 10; i++ ) {
     const createButton = document.createElement("button");
     createButton.innerText = `+${i}`;
     createButton.id = `plus${i}`;
-    document.body.appendChild(createButton);
+    buttonContainer.appendChild(createButton);
 
     createButton.onclick = () => {
         totalVal.push(i);
