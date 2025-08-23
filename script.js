@@ -1,6 +1,12 @@
 let totalVal = [];
 let wakeLock = null;
-
+// get the localStorage value and display on screen
+let totalDisplay = localStorage.getItem("total");
+if (totalDisplay === null) {
+  document.getElementById("display").innerText = 0;
+} else { 
+  document.getElementById("display").innerText = totalDisplay;
+}
 // Try to request wake lock
 async function requestWakeLock() {
   try {
@@ -26,7 +32,10 @@ for (let i = 1;i <= 10; i++ ) {
         let total = totalVal.reduce((a,b)=> {
             return a + b;
         },0)
-        document.getElementById("display").innerText = total;
+        // set the total added value into a localStorage with a key "total"
+        localStorage.setItem("total",total);
+        totalDisplay = localStorage.getItem("total");
+        document.getElementById("display").innerText = totalDisplay;
     };
 }
 
@@ -37,6 +46,7 @@ resetButton.innerText = "RESET";
 resetButton.onclick = () => {
     totalVal = [];
     document.getElementById("display").innerText = 0;
+    localStorage.clear();
 }
 
 requestWakeLock();
