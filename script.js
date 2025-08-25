@@ -1,4 +1,8 @@
 let totalVal = [];
+let repCount = 0;
+if (localStorage.getItem("rep") !== null){
+  repCount = [Number(localStorage.getItem("rep"))]; 
+}
 if (localStorage.getItem("total") !== null){
    totalVal = [Number(localStorage.getItem("total"))] 
 }
@@ -35,6 +39,10 @@ const store = (x) => {
   localStorage.setItem("total",total);
   totalDisplay = localStorage.getItem("total");
   document.getElementById("display").innerText = totalDisplay;
+  // local storage for rep count
+  localStorage.setItem("rep",x);
+  document.getElementById("rep").innerText=localStorage.getItem("rep");
+  console.log(localStorage.getItem("rep"));
 }
 //create 10 button, and put id on each of them, click of a button will return a value with the designated number
 for (let i = 1;i <= 10; i++ ) {
@@ -48,8 +56,9 @@ for (let i = 1;i <= 10; i++ ) {
     };
 
     document.addEventListener("keydown", function(event){
-      if (event.key === "0"){
-        store(1);
+      if (event.key === "0" && i == 10){
+        store(i);
+        localStorage.setItem("rep",10);
       } else if (event.key === `${i}`){
         button();
       }
@@ -60,11 +69,16 @@ for (let i = 1;i <= 10; i++ ) {
 const resetButton = document.createElement("button");
 document.body.appendChild(resetButton);
 resetButton.innerText = "RESET";
-resetButton.onclick = () => {
+let resetButtonST=resetButton.onclick = () => {
     totalVal = [];
     document.getElementById("display").innerText = 0;
     localStorage.clear();
 }
 
+document.addEventListener("keydown", function(event){
+  if (event.key == "r"){
+    resetButtonST();
+  }
+});  
 requestWakeLock();
 
